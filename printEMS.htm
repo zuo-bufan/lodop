@@ -1,0 +1,147 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>WEB打印控件LODOP的样例四:打印设计和定位套打票据</title>
+    <meta name="keywords" content="Lodop、Lodop打印控件、WEB打印、C-Lodop、CLodop、lodop控件、云打印、手机打印、免费、AO打印">
+    <meta name="description" content="Lodop、Lodop打印控件、WEB打印、C-Lodop、CLodop、lodop控件、云打印、手机打印、免费、AO打印">
+    <script language="javascript" src="LodopFuncs.js"></script>
+</head>
+<body>
+
+<a href="javascript:Design1()">模板设计</a><br/><br/>
+<a href="javascript:Preview1()">模板的打印预览</a><br/><br/>
+<a href="javascript:Setup()">打印维护</a>
+
+<script language="javascript" type="text/javascript">
+    var LODOP; //声明为全局变量
+    var data = {
+        name:'腾讯科技',
+        area:'120',
+        addr:'安徽合肥',
+        phone:'18223093478',
+        spHouse:'√',
+        ysHouse:'√',
+        area2:'121',
+        area3:'123',
+        gcZhaojia:'123456',
+        cbjiage:'654321',
+        depositRadio1:'30',
+        depositRadio2:'31',
+        f:'壹',
+        j:'贰',
+        yuan:'叁',
+        s:'肆',
+        b:'伍',
+        q:'陆',
+        w:'柒',
+        sw:'捌',
+        bw:'玖',
+        totalMoney:'987654321',
+        drawer:'张三',
+        year:'2022',
+        month:'02',
+        day:'21'
+    };//获取后台传输过来的data值
+    function Preview1() {
+        CreatePrintPage(data);
+        LODOP.PREVIEW();
+    };
+    function Design1() {
+        CreatePrintPage(data);
+        LODOP.PRINT_DESIGN();
+    };
+    function Setup() {
+        CreatePrintPage();
+        LODOP.PRINT_SETUP();
+        // LODOP.PRINTA();
+    };
+
+    function RealPrint() {
+        CreateDataBill();
+        //云打印C-Lodop返回结果用回调函数:
+        if (LODOP.CVERSION) {
+            CLODOP.On_Return=function(TaskID,Value){ if (Value) alert("已发出实际打印命令！"); else alert("放弃打印！"); };
+            LODOP.PRINTA();
+            return;
+        };
+        //控件返回结果用语句本身：
+        if (LODOP.PRINTA())
+            alert("已发出实际打印命令！");
+        else
+            alert("放弃打印！");
+    };
+
+    function CreatePrintPage(data) {
+        LODOP=getLodop();
+
+
+        LODOP.PRINT_INITA(-40,-55,813,600,"套打维修基金专用收据");
+        LODOP.SET_PRINT_MODE("PRINT_NOCOLLATE",1);
+        LODOP.ADD_PRINT_SETUP_BKIMG("C:\\Users\\zj\\Pictures\\bg4.jpg");
+        LODOP.SET_SHOW_MODE("BKIMG_LEFT",77);
+        LODOP.SET_SHOW_MODE("BKIMG_TOP",47);
+        LODOP.SET_SHOW_MODE("BKIMG_WIDTH","174.63mm");
+        LODOP.SET_SHOW_MODE("BKIMG_HEIGHT","90.75mm");
+        LODOP.SET_SHOW_MODE("BKIMG_IN_PREVIEW",true);
+        LODOP.ADD_PRINT_TEXT(148,209,222,25, data.name);
+        LODOP.SET_PRINT_STYLEA(0,"FontSize",10);
+        LODOP.ADD_PRINT_TEXT(146,569,120,25, data.area);
+        LODOP.SET_PRINT_STYLEA(0,"FontSize",10);
+        LODOP.ADD_PRINT_TEXT(180,208,312,25, data.addr);
+        LODOP.SET_PRINT_STYLEA(0,"FontSize",10);
+        LODOP.ADD_PRINT_TEXT(178,611,90,25, data.phone);
+        LODOP.SET_PRINT_STYLEA(0,"FontSize",10);
+        LODOP.ADD_PRINT_TEXT(108,335,40,20, data.year);
+        LODOP.SET_PRINT_STYLEA(0,"FontSize",10);
+        LODOP.ADD_PRINT_TEXT(108,390,25,20, data.month);
+        LODOP.SET_PRINT_STYLEA(0,"FontSize",10);
+        LODOP.ADD_PRINT_TEXT(108,430,25,20, data.day);
+        LODOP.SET_PRINT_STYLEA(0,"FontSize",10);
+        LODOP.ADD_PRINT_TEXT(218,353,23,20, data.spHouse);
+        LODOP.SET_PRINT_STYLEA(0,"FontSize",10);
+        LODOP.ADD_PRINT_TEXT(218,600,19,20, data.ysHouse);
+        LODOP.SET_PRINT_STYLEA(0,"FontSize",10);
+        LODOP.ADD_PRINT_TEXT(248,287,65,20, data.area2);
+        LODOP.SET_PRINT_STYLEA(0,"FontSize",10);
+        LODOP.ADD_PRINT_TEXT(248,542,64,20, data.area3);
+        LODOP.SET_PRINT_STYLEA(0,"FontSize",10);
+        LODOP.ADD_PRINT_TEXT(270,266,75,25, data.gcZhaojia);
+        LODOP.SET_PRINT_STYLEA(0,"FontSize",10);
+        LODOP.ADD_PRINT_TEXT(270,410,39,25, data.depositRadio1);
+        LODOP.SET_PRINT_STYLEA(0,"FontSize",10);
+        LODOP.ADD_PRINT_TEXT(270,475,68,25, data.cbjiage);
+        LODOP.SET_PRINT_STYLEA(0,"FontSize",10);
+        LODOP.ADD_PRINT_TEXT(270,627,34,25, data.depositRadio2);
+        LODOP.SET_PRINT_STYLEA(0,"FontSize",10);
+        LODOP.ADD_PRINT_TEXT(310,574,100,25, data.totalMoney);
+        LODOP.SET_PRINT_STYLEA(0,"FontSize",10);
+        LODOP.ADD_PRINT_TEXT(310,216,20,30, data.bw);
+        LODOP.SET_PRINT_STYLEA(0,"FontSize",10);
+        LODOP.ADD_PRINT_TEXT(310,251,20,30, data.sw);
+        LODOP.SET_PRINT_STYLEA(0,"FontSize",10);
+        LODOP.ADD_PRINT_TEXT(310,286,20,30, data.w);
+        LODOP.SET_PRINT_STYLEA(0,"FontSize",10);
+        LODOP.ADD_PRINT_TEXT(310,321,20,30, data.q);
+        LODOP.SET_PRINT_STYLEA(0,"FontSize",10);
+        LODOP.ADD_PRINT_TEXT(310,356,20,30, data.b);
+        LODOP.SET_PRINT_STYLEA(0,"FontSize",10);
+        LODOP.ADD_PRINT_TEXT(310,391,20,30, data.s);
+        LODOP.SET_PRINT_STYLEA(0,"FontSize",10);
+        LODOP.ADD_PRINT_TEXT(310,426,20,30, data.yuan);
+        LODOP.SET_PRINT_STYLEA(0,"FontSize",10);
+        LODOP.ADD_PRINT_TEXT(310,461,20,30, data.j);
+        LODOP.SET_PRINT_STYLEA(0,"FontSize",10);
+        LODOP.ADD_PRINT_TEXT(310,496,20,30, data.f);
+        LODOP.SET_PRINT_STYLEA(0,"FontSize",10);
+        LODOP.ADD_PRINT_TEXT(355,461,54,30, data.drawer);
+        LODOP.SET_PRINT_STYLEA(0,"FontSize",10);
+
+
+    };
+
+</script>
+
+</body>
+</html>

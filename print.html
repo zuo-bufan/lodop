@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+  <input type="button" class="layui-btn" onclick="print()" value="打印" />
+  <script type="text/javascript" src="./LodopFuncs.js"></script>
+  <script type="text/javascript" src="./LodopPrint.js"></script>
+  <script>
+
+    function print() {
+      var data = {
+        name:'中杰科技',
+        area:'120',
+        addr:'安徽合肥',
+        phone:'18223093478',
+        spHouse:'√',
+        ysHouse:'√',
+        area2:'121',
+        area3:'123',
+        gcZhaojia:'123456',
+        cbjiage:'654321',
+        depositRadio1:'30',
+        depositRadio2:'31',
+        f:'壹',
+        j:'贰',
+        yuan:'叁',
+        s:'肆',
+        b:'伍',
+        q:'陆',
+        w:'柒',
+        sw:'捌',
+        bw:'玖',
+        totalMoney:'987654321',
+        drawer:'张三',
+        year:'2022',
+        month:'02',
+        day:'21'
+      };//获取后台传输过来的data值
+      if (data) {
+        console.log(123)
+        PrintEntryOrder(data);
+      }
+
+
+    }
+
+
+  </script>
+</body>
+</html>
