@@ -13,7 +13,7 @@
 
 #### 2.打开 EMSprint.htm 文件设计打印模板
 
-![img_1.png]((https://img-blog.csdnimg.cn/05ecf7010f324270a9918dfb64ba5d5d.png#pic_center)
+![img_1.png](https://img-blog.csdnimg.cn/05ecf7010f324270a9918dfb64ba5d5d.png#pic_center)
 #### 3.使用模板设计 开始设计打印套打模板
 
 ![img_2.png](https://img-blog.csdnimg.cn/04e8d37b4ebd41c88d8051ce9319ede6.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6YGH5Yiw6Zeu6aKY5LiN6KaB5oWM,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center)
